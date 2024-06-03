@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="custom-list.css">
+    <link rel="stylesheet" href="site-footer.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Sen:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Cineverse</title>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-container">
+            <div class="logo-container">
+                <h1 class="logo">Cineverse</h1>
+            </div>
+            <div class="menu-container">
+                <ul class="menu-list">
+                    <li class="menu-list-item active">Home</li>
+                    <li class="menu-list-item">Favoritos</li>
+                    <li class="menu-list-item">Cinemas perto de si</li>
+                </ul>
+            </div>
+            <div class="profile-container">
+                <img class="profile-picture" src="img/profile.jpg" alt="Profile Picture">
+                <div class="profile-text-container">
+                    <span class="profile-text">Perfil</span>
+                    <i class="fas fa-caret-down"></i>
+                </div>
+                <div class="toggle">
+                    <i class="fas fa-moon toggle-icon"></i>
+                    <i class="fas fa-sun toggle-icon"></i>
+                    <div class="toggle-ball"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="content-container">
+            <div class="featured-content" style="background: linear-gradient(to bottom, rgba(0,0,0,0), #151515), url('img/5.jpg');">
+                <img class="featured-title" src="img/5.jpg" alt="Featured Title">
+                <p class="featured-desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto illo dolor deserunt nam assumenda ipsa eligendi dolore, ipsum id fugiat quo enim impedit, laboriosam omnis minima voluptatibus incidunt. Accusamus, provident.</p>
+                <button class="featured-button">Detalhes</button>
+            </div>
+            <div class="movie-list-container">
+                <h1 class="movie-list-title">Favoritos</h1>
+                <div class="movie-list-wrapper">
+                    <div class="movie-list">
+                    </div>
+                    <i class="fas fa-chevron-right arrow"></i>
+                </div>
+            </div>
+            <div class="featured-content" style="background: linear-gradient(to bottom, rgba(0,0,0,0), #151515), url('img/f-2.jpg');">
+                <img class="featured-title" src="img/f-t-2.png" alt="Featured Title 2">
+                <p class="featured-desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto illo dolor deserunt nam assumenda ipsa eligendi dolore, ipsum id fugiat quo enim impedit, laboriosam omnis minima voluptatibus incidunt. Accusamus, provident.</p>
+                <button class="featured-button">Detalhes</button>
+            </div>
+        </div>
+        
+        <div class="movie-list-container">
+            <section id="movie-generator" class="movie-generator-section">
+                <h2 class="movie-generator-title">Movie Generator</h2>
+                <form id="movie-filter-form">
+                    <label for="tipo">Tipo (Live Action ou Animado):</label>
+                    <input type="text" id="tipo" name="tipo">
+                    <br>
+                    <label for="genero">Género:</label>
+                    <select id="genero" name="genero">
+                        <option value="">Selecione o género</option>
+                        <option value="Ação">Ação</option>
+                        <option value="Aventura">Aventura</option>
+                        <option value="Cinema de arte">Cinema de arte</option>
+                        <option value="Comédia">Comédia</option>
+                        <option value="Documentário">Documentário</option>
+                        <option value="Drama">Drama</option>
+                        <option value="Ficção científica">Ficção científica</option>
+                        <option value="Guerra">Guerra</option>
+                        <option value="Mistério">Mistério</option>
+                        <option value="Musical">Musical</option>
+                        <option value="Romance">Romance</option>
+                        <option value="Terror">Terror</option>
+                        <option value="Thriller">Thriller</option>
+                    </select>
+                    <label for="ano">Ano (2000-2024):</label>
+                    <input type="number" id="ano" name="ano" min="2000" max="2024">
+                    <br>
+                    <button type="button" id="generate-movie">Gerar Filme</button>
+                </form>
+                <div id="movie-result"></div>
+            </section>
+        </div>
+        
+        <div class="movie-list-container">
+            <h2>Estatísticas dos Filmes em 2023</h2>
+            <div>
+                <canvas id="barChart" width="400" height="200"></canvas>
+            </div>
+            <div>
+                <canvas id="pieChart" width="400" height="200"></canvas>
+            </div>
+            <div id="stats">
+                <p>Valor médio da avaliação: <span id="avgRating"></span></p>
+                <p>Melhor avaliação: <span id="bestRating"></span></p>
+                <p>Pior avaliação: <span id="worstRating"></span></p>
+            </div>
+            <ul id="movieList"></ul>
+        </div>
+        
+        <footer class="site-footer">
+            <div class="site-footer__contact">
+                <div>Nayuka Malebo</div>
+                <div>Contactos: +351987653567</div>
+            </div>
+        </footer>
+    </div>
+    <script>
+        document.getElementById('generate-movie').addEventListener('click', function() {
+            const tipo = document.getElementById('tipo').value;
+            const genero = document.getElementById('genero').value;
+            const ano = document.getElementById('ano').value;
+    
+            localStorage.setItem('tipo', tipo);
+            localStorage.setItem('genero', genero);
+            localStorage.setItem('ano', ano);
+    
+            window.location.href = 'recomendation.html';
+        });
+    </script>
+    <script src="app.js"></script>
+</body>
+</html>
